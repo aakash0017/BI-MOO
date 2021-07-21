@@ -11,6 +11,8 @@ class ZDT(Problem):
         self.zdt_definitions = zdt_definitions
         self.max_objectives = [None, None]
         self.min_objectives = [None, None]
+        self.function1 = []
+        self.function2 = []
         self.problem_type = None
         self.n = zdt_definitions.n
 
@@ -55,7 +57,7 @@ class ZDT(Problem):
         individual = Individual()
         individual.features = []
         for i in range(self.n):
-            individual.features.append(random.randint(0,1))
+            individual.features.append(random.randint(0,2))
         self.nonEmptyTriclusterBackUp(individual)
         individual.dominates = functools.partial(self.__dominates, individual1=individual)
         self.calculate_objectives(individual)
@@ -74,8 +76,11 @@ class ZDT(Problem):
         individual.objectives = []
         individual.objectives.append(self.zdt_definitions.f1(individual))
         individual.objectives.append(self.zdt_definitions.f2(individual))
+        self.function1.append(self.zdt_definitions.f1(individual))
+        self.function2.append(self.zdt_definitions.f2(individual))
         # individual.objectives.append(self.zdt_definitions.f3(individual))
         for i in range(2):
+
             if self.min_objectives[i] is None or individual.objectives[i] < self.min_objectives[i]:
                 self.min_objectives[i] = individual.objectives[i]
             if self.max_objectives[i] is None or individual.objectives[i] > self.max_objectives[i]:

@@ -10,7 +10,7 @@ class ZDT3Definitions(ProblemDefinitions):
     def __init__(self, data, delta):
         self.data = data
 
-        self.n = data.shape[0] + data.shape[1]  + data.shape[0]
+        self.n = data.shape[0] + data.shape[1] + data.shape[0]
         self.delta = delta
         self.featuresUsed = None
 
@@ -21,12 +21,17 @@ class ZDT3Definitions(ProblemDefinitions):
                                           tricluster.inverted_rows)
 
     def f2(self, individual):
+        # print('this is the type of idividual: ', type(individual))
         interfaceTrNSGA = InterfaceTrNSGA(self.data)
         tricluster = interfaceTrNSGA.chromosomeToTricluster(individual)
+        print(tricluster)
+        if len(tricluster.cols) == 0 or len(tricluster.rows) == 1:
+            return 1
         total_area = self.data.shape[0] * self.data.shape[1]
         area_bicluster = len(tricluster.rows)/len(tricluster.cols)
         # print("Calculating area")
-        return area_bicluster/total_area
+        #maximise area
+        return (1- 1/area_bicluster)
 
 
 

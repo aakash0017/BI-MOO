@@ -53,7 +53,7 @@ class InterfaceTriclusteringNSGAII():
 		lC = self.data.shape[1]
 		# lT = self.data.shape[2]
 		lIR= self.data.shape[0]
-		 
+
 		for row in tricluster.rows:
 			chromosome.features[row] = 1
 		for col in tricluster.cols:
@@ -62,6 +62,6 @@ class InterfaceTriclusteringNSGAII():
 		# 	chromosome.features[lL+lC+time] = 1
 		for invRow in tricluster.inverted_rows:
 			chromosome.features[lL+lC+invRow] = 1
-		
+
 		return(chromosome)
 
