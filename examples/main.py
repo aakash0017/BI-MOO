@@ -49,7 +49,7 @@ data = tr.readFiles(path1)
 zdt_definitions = ZDT3Definitions(data)
 # plotter = Plotter(zdt_definitions)
 problem = ZDT(zdt_definitions)
-evolution = Evolution(problem, 100, 10)
+evolution = Evolution(problem, 100, 19)
 
 # evolution.register_on_new_generation(plotter.plot_population_best_front)
 evolution.register_on_new_generation(print_generation)
