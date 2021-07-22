@@ -14,17 +14,20 @@ import math
 
 
 class Tricluster:
-    def __init__(self, rows, cols, inverted_rows, msr):
-        if isinstance(rows, np.ndarray) and isinstance(cols, np.ndarray) and isinstance(inverted_rows, np.ndarray):
+    # def __init__(self, rows, cols, inverted_rows, msr):
+    def __init__(self, rows, cols, msr):
+        # if isinstance(rows, np.ndarray) and isinstance(cols, np.ndarray) and isinstance(inverted_rows, np.ndarray):
+        if isinstance(rows, np.ndarray) and isinstance(cols, np.ndarray):
             self.rows = rows
             self.cols = cols
-            self.inverted_rows = inverted_rows
+            # self.inverted_rows = inverted_rows
         else:
             raise Exception("rows, cols and inverted_rows must be np.ndarray. TIPS: np.array(rows_list) is the way.")
         self.msr = msr
 
     def __str__(self):
-        return "Shape:{0}, {1}\tMSR:{2}".format(self.rows.size + self.inverted_rows.size, self.cols.size, self.msr)
+        # return "Shape:{0}, {1}\tMSR:{2}".format(self.rows.size + self.inverted_rows.size, self.cols.size, self.msr)
+        return "Shape:{0}, {1}\tMSR:{2}".format(self.rows.size, self.cols.size, self.msr)
 
 
 def read_matrix(filename, url=False):

@@ -57,7 +57,7 @@ class ZDT(Problem):
         individual = Individual()
         individual.features = []
         for i in range(self.n):
-            individual.features.append(random.randint(0,2))
+            individual.features.append(random.randint(0,1))
         self.nonEmptyTriclusterBackUp(individual)
         individual.dominates = functools.partial(self.__dominates, individual1=individual)
         self.calculate_objectives(individual)
