@@ -27,9 +27,10 @@ class ZDT3Definitions(ProblemDefinitions):
     def f2(self, individual):
         # print('this is the type of idividual: ', type(individual))
         interfaceTrNSGA = InterfaceTrNSGA(self.data)
+        # print('shape of data is:', self.data.shape)
         tricluster = interfaceTrNSGA.chromosomeToTricluster(individual)
-        print(individual.features)
-        print(tricluster)
+        # print(len(individual.features))
+        # print(tricluster)
         if len(tricluster.cols) == 0 or len(tricluster.rows) == 1:
             return 1
         total_area = self.data.shape[0] * self.data.shape[1]
