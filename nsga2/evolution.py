@@ -85,7 +85,6 @@ class Evolution(object):
             new_population = Population()
             front_num = 0
             mn = 0
-            print("above while of evolve -----------")
             print("popu = ", len(new_population))
             while len(new_population) + len(self.population.fronts[front_num]) <= self.num_of_individuals:
                 print("under while of evolve -----------")
@@ -96,6 +95,7 @@ class Evolution(object):
                 print("objectives are -----", self.population.fronts[0][0].objectives[0],self.population.fronts[0][0].objectives[1] )
                 self.utils.calculate_crowding_distance(self.population.fronts[front_num])
                 new_population.extend(self.population.fronts[front_num])
+                print('This is the new population after extend function: ', new_population.population)
                 front_num += 1
                 print("end of while loop ----- front num = ", front_num)
                 print("front len = " ,len(self.population.fronts[front_num]))
@@ -111,6 +111,7 @@ class Evolution(object):
             children = self.utils.create_children(self.population)
 
             for fun in self.on_generation_finished:
+                print('This is funnnnnn: ', fun)
                 fun(returned_population, i)
             print("till here")
 

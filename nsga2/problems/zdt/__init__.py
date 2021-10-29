@@ -35,16 +35,21 @@ class ZDT(Problem):
         # k=0
 
         for i in range(self.zdt_definitions.data.shape[0]):
-           if  individual.features[i] == 1:
+           # if  individual.features[i] == 1:
+           if individual.features[i] == 0:
                 isRowsEmpty = False
            if isRowsEmpty:
                individual.features[1] = 1
+               # individual.features[i] = 1
+
 
         for j in range(self.zdt_definitions.data.shape[1]):
-           if  individual.features[i + j] == 1:
+           # if  individual.features[i + j] == 1:
+           if individual.features[i + j] == 0:
                 isColsEmpty = False
            if isColsEmpty:
                individual.features[i+1] = 1
+               # individual.features[i + j] = 1
         
         # for k in range(self.zdt_definitions.data.shape[2]):
         #    if  individual.features[i +j + k] == 1:
@@ -57,7 +62,7 @@ class ZDT(Problem):
         individual = Individual()
         individual.features = []
         for i in range(self.n):
-            individual.features.append(random.randint(0,2))
+            individual.features.append(random.randint(0,1))
         self.nonEmptyTriclusterBackUp(individual)
         individual.dominates = functools.partial(self.__dominates, individual1=individual)
         self.calculate_objectives(individual)

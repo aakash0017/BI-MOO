@@ -7,24 +7,30 @@ import math
 
 class ZDT3Definitions(ProblemDefinitions):
 
-    def __init__(self, data, delta):
+    # def __init__(self, data, delta):
+    def __init__(self, data):
+
         self.data = data
 
-        self.n = data.shape[0] + data.shape[1] + data.shape[0]
-        self.delta = delta
+        # self.n = data.shape[0] + data.shape[1] + data.shape[0]
+        self.n = data.shape[0] + data.shape[1]
+        # self.delta = delta
         self.featuresUsed = None
 
     def f1(self, individual):
         interfaceTrNSGA = InterfaceTrNSGA(self.data)
         tricluster = interfaceTrNSGA.chromosomeToTricluster(individual)
-        return tr.mean_squared_residue_np(self.data, tricluster.rows, tricluster.cols,
-                                          tricluster.inverted_rows)
+        # return tr.mean_squared_residue_np(self.data, tricluster.rows, tricluster.cols,
+        #                                   tricluster.inverted_rows)
+        return tr.mean_squared_residue_np(self.data, tricluster.rows, tricluster.cols)
 
     def f2(self, individual):
         # print('this is the type of idividual: ', type(individual))
         interfaceTrNSGA = InterfaceTrNSGA(self.data)
+        # print('shape of data is:', self.data.shape)
         tricluster = interfaceTrNSGA.chromosomeToTricluster(individual)
-        print(tricluster)
+        # print(len(individual.features))
+        # print(tricluster)
         if len(tricluster.cols) == 0 or len(tricluster.rows) == 1:
             return 1
         total_area = self.data.shape[0] * self.data.shape[1]

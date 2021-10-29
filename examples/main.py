@@ -35,7 +35,7 @@ collected_metrics = {}
 
 
 
-delta = 100
+# delta = 100
 
 
 path1 = 'yeast_output.txt'
@@ -45,10 +45,11 @@ data = tr.readFiles(path1)
 
 
 
-zdt_definitions = ZDT3Definitions(data, delta)
+# zdt_definitions = ZDT3Definitions(data, delta)
+zdt_definitions = ZDT3Definitions(data)
 # plotter = Plotter(zdt_definitions)
 problem = ZDT(zdt_definitions)
-evolution = Evolution(problem, 50, 20)
+evolution = Evolution(problem, 100, 10)
 
 # evolution.register_on_new_generation(plotter.plot_population_best_front)
 evolution.register_on_new_generation(print_generation)
@@ -66,8 +67,8 @@ pareto_front = evolution.evolve()
 # plt.scatter(function1, function2)
 # plt.show()
 
-# print(problem.function1)
-# print(problem.function2)
+print(problem.function1)
+print(problem.function2)
 
 plt.xlabel('MSR', fontsize=15)
 plt.ylabel('Area', fontsize=15)

@@ -131,7 +131,7 @@ class NSGA2Utils(object):
         isRowsEmpty = True
         isColsEmpty = True
         # isTimesEmpty = True
-        i=0
+        # i=0
         j=0
         k=0
 
@@ -139,13 +139,14 @@ class NSGA2Utils(object):
            if  individual.features[i] == 1:
                isRowsEmpty = False
            if isRowsEmpty:
-               individual.features[1] = 1
-
+               # individual.features[1] = 1
+               individual.features[i] = 1
         for j in range(self.data.shape[1]):
            if  individual.features[i + j] == 1:
                isColsEmpty = False
            if isColsEmpty:
-               individual.features[i+1] = 1
+               # individual.features[i+1] = 1
+               individual.features[i+j] = 1
 
 
 	
@@ -229,13 +230,24 @@ class NSGA2Utils(object):
         return child1, child2
 
     def __mutate(self, child):
+        # mutation_parameter = random.random()
+        # self.number_of_genes_to_mutate = int(len(child.features)/4)
+        # genes_to_mutate = random.sample(range(0, len(child.features)), self.number_of_genes_to_mutate)
+        # if mutation_parameter > 0.7:
+        #     for gene in genes_to_mutate:
+        #         child.features[gene] = child.features[gene] - self.mutation_strength/2 + random.random() * self.mutation_strength
+        #         if child.features[gene] < 0:
+        #             print('')
+        #             child.features[gene] = 0
+        #         elif child.features[gene] > 1:
+        #             child.features[gene] = 1
+
+        mutation_parameter = random.random()
+        self.number_of_genes_to_mutate = int(len(child.features) / 4)
         genes_to_mutate = random.sample(range(0, len(child.features)), self.number_of_genes_to_mutate)
-        for gene in genes_to_mutate:
-            child.features[gene] = child.features[gene] - self.mutation_strength/2 + random.random() * self.mutation_strength
-            if child.features[gene] < 0:
-                child.features[gene] = 0
-            elif child.features[gene] > 1:
-                child.features[gene] = 1
+        if mutation_parameter > 0.7:
+            for gene in genes_to_mutate:
+                child.features[gene] = 1 if child.features[gene] == 0  else 0
         
     def __tournament(self, population):
         participants = random.sample(list(population), self.num_of_tour_particips)

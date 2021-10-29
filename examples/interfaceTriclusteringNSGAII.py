@@ -34,15 +34,19 @@ class InterfaceTriclusteringNSGAII():
 		# 	if chromosome.features[i+j+k]==1:
 		# 		timesTricluster.append(k)
 
-		for l in range(self.data.shape[0]):
-			if chromosome.features[i+j+l]==1:
-				invRowsTricluster.append(l)
+		# for l in range(self.data.shape[0]):
+		# 	if chromosome.features[i+j+l]==1:
+		# 		invRowsTricluster.append(l)
 		
-		rowsTricluster, colsTricluster, invRowsTricluster  = np.array(rowsTricluster), np.array(colsTricluster), np.array(invRowsTricluster)
-		
-		msr = tr.mean_squared_residue_np(self.data, rowsTricluster, colsTricluster, invRowsTricluster )
+		# rowsTricluster, colsTricluster, invRowsTricluster  = np.array(rowsTricluster), np.array(colsTricluster), np.array(invRowsTricluster)
 
-		tricluster = Tricluster(rowsTricluster, colsTricluster,  invRowsTricluster, msr)
+		rowsTricluster, colsTricluster = np.array(rowsTricluster), np.array(colsTricluster)
+		
+		msr = tr.mean_squared_residue_np(self.data, rowsTricluster, colsTricluster)
+
+		# tricluster = Tricluster(rowsTricluster, colsTricluster,  invRowsTricluster, msr)
+		tricluster = Tricluster(rowsTricluster, colsTricluster, msr)
+
 
 		return(tricluster)
 
